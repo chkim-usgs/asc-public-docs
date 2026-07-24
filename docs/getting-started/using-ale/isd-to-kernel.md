@@ -54,12 +54,12 @@ See the [Arguments](#arguments) section below for details on all available optio
     For text-based kernels (IK, FK, etc.), you can provide keyword data as a JSON object:
 
     ```sh
-    isd_to_kernel -f observation.json -k ik -d '{"INS_ID": "-12345", "INS_FOV": "0.5"}' -o instrument.ti
+    isd_to_kernel -k ik -d '{"INS_ID": "-12345", "INS_FOV": "0.5"}' -o instrument.ti
     ```
 
 !!! example "Specifying a Custom Output File"
 
-    To specify a custom output filename instead of using the default:
+    To specify a custom output filename instead of using the ISD filename:
 
     ```sh
     isd_to_kernel -f ctx_isd.json -k spk -o ctx_custom.bsp
@@ -74,6 +74,18 @@ See the [Arguments](#arguments) section below for details on all available optio
     ```
 
     Comments are written to the kernel's comment area.
+
+!!! example "Using web SpiceQL"
+
+    Use the `--web` flag to retrieve supporting kernels from the SpiceQL web service instead of a local SPICE data area. This lets you create a kernel without downloading ISIS data or setting `$ALESPICEROOT`. This is especially useful for CK creation, which needs supporting kernels (LSK, SCLK) to convert the ISD's pointing data:
+
+    ```sh
+    isd_to_kernel -f ctx_isd.json -k ck --web
+    ```
+
+    !!! tip "Only binary kernels need SPICE data"
+
+        Binary kernel (CK and SPK) generation requires SPICE data, so use `--web` or set a local `$ALESPICEROOT` data area for those. Text kernels (FK, IK, LSK, etc.) are built from the ISD alone and need neither.
 
 ??? info "Verbose Output"
 
@@ -213,8 +225,7 @@ isd_to_kernel -f mission_positions.json -k spk -o shared_ephemeris.bsp --overwri
     **Error: "Could not complete isd_to_kernel task"**
     
     - [ ] Verify your ISD file is valid JSON and contains the required fields
-    - [ ] Check that you have SPICE data available (set `$ALESPICEROOT` or use `--web`)
-    - [ ] Ensure supporting kernels (LSK, PCK, FK, IK, SCLK) are available for your mission
+    - [ ] Check that you have SPICE data available *if* creating CK or SPK
     - [ ] Use `-v` (verbose mode) to see detailed error messages
     
     **Error: "Output file already exists"**
