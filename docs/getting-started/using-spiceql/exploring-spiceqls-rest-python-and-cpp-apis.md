@@ -469,22 +469,22 @@ You can set the flag `useWeb` to enable SpiceQL's cloud feature without having t
         ```
         
 
-??? example "etsToSclkTicks"
+??? example "doubleEtsToSclkTicks"
 
-    #### [etsToSclkTicks](https://astrogeology.usgs.gov/docs/manuals/spiceql/SpiceQLCPPAPI/namespaceSpiceQL/#function-etstosclkticks)
+    #### [doubleEtsToSclkTicks](https://astrogeology.usgs.gov/docs/manuals/spiceql/SpiceQLCPPAPI/namespaceSpiceQL/#function-doubleEtsToSclkTicks)
 
     <h3>Function calls</h3>
 
     === "REST"
 
         ```bash
-        curl -XGET "https://astrogeology.usgs.gov/apis/spiceql/latest/etsToSclkTicks?frameCode=-74&ets=\[690201375.8323615\]&mission=ctx&searchKernels=true"
+        curl -XGET "https://astrogeology.usgs.gov/apis/spiceql/latest/doubleEtsToSclkTicks?frameCode=-74&ets=\[690201375.8323615\]&mission=ctx&searchKernels=true"
         ```
 
     === "Python"
 
         ```py
-        pql.etsToSclkTicks(
+        pql.doubleEtsToSclkTicks(
             frameCode=-74,
             ets=[690201375.8323615],
             mission="ctx",
@@ -496,7 +496,7 @@ You can set the flag `useWeb` to enable SpiceQL's cloud feature without having t
     === "C++"
 
         ```c++
-        SpiceQL::etsToSclkTicks(-74, {690201375.8323615}, "ctx", true, true)
+        SpiceQL::doubleEtsToSclkTicks(-74, {690201375.8323615}, "ctx", true, true)
         ```
 
     <h3>Responses</h3>
