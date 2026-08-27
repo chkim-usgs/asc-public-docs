@@ -24,7 +24,7 @@ Subsequent Production and LTS releases (with no Major version change, i.e, 8.***
 
 ### 1. **Prepare Feeder Branch/Merge Any Unmerged Changes**
 
-??? info "Releasing a Major Version"
+??? tip "Releasing a Major Version"
 
     After the official release of a major version (10.0.0), cut the LTS branch `10-lts` off of the new `10.0.0` tag to prepare the LTS feeder branch.
 
